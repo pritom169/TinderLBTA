@@ -14,21 +14,38 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let buttonStackView = HomeButtonControlsStackView()
     
+    
+    let cardViewModels: [CardViewModel] = {
+       let producers = [
+        User(name: "George", age: 57, profession: "Actor", imageName: "cluny"),
+        User(name: "Angelina", age: 43, profession: "Actress", imageName: "angelina"),
+        Advertiser(title: "Slide out Menu", brandName: "Let's build that app", posterPhotoNames: "iPhoneX")
+        ] as [ProducesCarViewModel]
+        
+        let viewModels = producers.map({return $0.toCardViewModel()})
+        return viewModels
+    }()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
-        
         setupDummyCards()
-        
-        
     }
     
     fileprivate func setupDummyCards(){
-        print("Setting up some dummy card!")
-        let cardView = CardView(frame: .zero)
-        cardsDeckView.addSubview(cardView)
-        cardView.fillSuperview()
+        
+        cardViewModels.forEach { (cardVM) in
+            let cardView = CardView(frame: .zero)
+            cardView.cardViewModel = cardVM
+            
+//            cardView.imageView.image = UIImage(named: cardViewModel.imageName)
+//            cardView.informationLabel.attributedText = cardViewModel.attributedString
+//            cardView.informationLabel.textAlignment = cardViewModel.textAlignment
+            cardsDeckView.addSubview(cardView)
+            cardView.fillSuperview()
+            
+        }
     }
     
     

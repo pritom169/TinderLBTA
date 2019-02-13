@@ -8,20 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		602270F8221295E500C5DCC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602270F7221295E500C5DCC3 /* AppDelegate.swift */; };
-		602270FA221295E500C5DCC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602270F9221295E500C5DCC3 /* ViewController.swift */; };
+		602270FA221295E500C5DCC3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602270F9221295E500C5DCC3 /* HomeController.swift */; };
 		602270FD221295E500C5DCC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602270FB221295E500C5DCC3 /* Main.storyboard */; };
 		602270FF221295E600C5DCC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602270FE221295E600C5DCC3 /* Assets.xcassets */; };
 		60227102221295E600C5DCC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60227100221295E600C5DCC3 /* LaunchScreen.storyboard */; };
+		604177C422129B9B00D466F9 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604177C322129B9B00D466F9 /* Extensions+UIView.swift */; };
+		604177E52212D42000D466F9 /* HomeButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */; };
+		6061B8462212F1AC00E750A7 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */; };
+		608A48D52213D5AD0079587C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48D42213D5AD0079587C /* CardView.swift */; };
+		608A48D82213FA0E0079587C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48D72213FA0E0079587C /* User.swift */; };
+		608A48DC2214204F0079587C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48DB2214204F0079587C /* CardViewModel.swift */; };
+		608A48DE221429CC0079587C /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48DD221429CC0079587C /* Advertiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		602270F4221295E500C5DCC3 /* SwipeMatchFirestoreLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatchFirestoreLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602270F7221295E500C5DCC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		602270F9221295E500C5DCC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		602270F9221295E500C5DCC3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		602270FC221295E500C5DCC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		602270FE221295E600C5DCC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60227101221295E600C5DCC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60227103221295E600C5DCC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		604177C322129B9B00D466F9 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControlsStackView.swift; sourceTree = "<group>"; };
+		6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
+		608A48D42213D5AD0079587C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		608A48D72213FA0E0079587C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		608A48DB2214204F0079587C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		608A48DD221429CC0079587C /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,61 @@
 		602270F6221295E500C5DCC3 /* SwipeMatchFirestoreLBTA */ = {
 			isa = PBXGroup;
 			children = (
+				608A48DA221420150079587C /* ViewModels */,
+				608A48D62213F9F70079587C /* Model */,
+				604177E32212D3DF00D466F9 /* Views */,
+				608A48D9221419800079587C /* Controller */,
+				604177C222129AAD00D466F9 /* Extensions */,
 				602270F7221295E500C5DCC3 /* AppDelegate.swift */,
-				602270F9221295E500C5DCC3 /* ViewController.swift */,
 				602270FB221295E500C5DCC3 /* Main.storyboard */,
 				602270FE221295E600C5DCC3 /* Assets.xcassets */,
 				60227100221295E600C5DCC3 /* LaunchScreen.storyboard */,
 				60227103221295E600C5DCC3 /* Info.plist */,
 			);
 			path = SwipeMatchFirestoreLBTA;
+			sourceTree = "<group>";
+		};
+		604177C222129AAD00D466F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				604177C322129B9B00D466F9 /* Extensions+UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		604177E32212D3DF00D466F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */,
+				6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */,
+				608A48D42213D5AD0079587C /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		608A48D62213F9F70079587C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				608A48D72213FA0E0079587C /* User.swift */,
+				608A48DD221429CC0079587C /* Advertiser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		608A48D9221419800079587C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				602270F9221295E500C5DCC3 /* HomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		608A48DA221420150079587C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				608A48DB2214204F0079587C /* CardViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602270FA221295E500C5DCC3 /* ViewController.swift in Sources */,
+				602270FA221295E500C5DCC3 /* HomeController.swift in Sources */,
 				602270F8221295E500C5DCC3 /* AppDelegate.swift in Sources */,
+				608A48DE221429CC0079587C /* Advertiser.swift in Sources */,
+				604177E52212D42000D466F9 /* HomeButtonControlsStackView.swift in Sources */,
+				604177C422129B9B00D466F9 /* Extensions+UIView.swift in Sources */,
+				608A48DC2214204F0079587C /* CardViewModel.swift in Sources */,
+				608A48D52213D5AD0079587C /* CardView.swift in Sources */,
+				6061B8462212F1AC00E750A7 /* TopNavigationStackView.swift in Sources */,
+				608A48D82213FA0E0079587C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9BXY7WD86A;
 				INFOPLIST_FILE = SwipeMatchFirestoreLBTA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9BXY7WD86A;
 				INFOPLIST_FILE = SwipeMatchFirestoreLBTA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
