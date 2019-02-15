@@ -14,7 +14,10 @@
 		60227102221295E600C5DCC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60227100221295E600C5DCC3 /* LaunchScreen.storyboard */; };
 		604177C422129B9B00D466F9 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604177C322129B9B00D466F9 /* Extensions+UIView.swift */; };
 		604177E52212D42000D466F9 /* HomeButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */; };
+		6046173122155624002C4875 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046173022155624002C4875 /* CustomTextField.swift */; };
+		6046173322158514002C4875 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046173222158514002C4875 /* RegistrationViewModel.swift */; };
 		6061B8462212F1AC00E750A7 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */; };
+		6064C10A22154409000D7FD7 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6064C10922154409000D7FD7 /* RegistrationViewController.swift */; };
 		608A48D52213D5AD0079587C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48D42213D5AD0079587C /* CardView.swift */; };
 		608A48D82213FA0E0079587C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48D72213FA0E0079587C /* User.swift */; };
 		608A48DC2214204F0079587C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48DB2214204F0079587C /* CardViewModel.swift */; };
@@ -31,7 +34,10 @@
 		60227103221295E600C5DCC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		604177C322129B9B00D466F9 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControlsStackView.swift; sourceTree = "<group>"; };
+		6046173022155624002C4875 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6046173222158514002C4875 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
+		6064C10922154409000D7FD7 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		608A48D42213D5AD0079587C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		608A48D72213FA0E0079587C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		608A48DB2214204F0079587C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 				604177E42212D42000D466F9 /* HomeButtonControlsStackView.swift */,
 				6061B8452212F1AC00E750A7 /* TopNavigationStackView.swift */,
 				608A48D42213D5AD0079587C /* CardView.swift */,
+				6046173022155624002C4875 /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -113,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				602270F9221295E500C5DCC3 /* HomeController.swift */,
+				6064C10922154409000D7FD7 /* RegistrationViewController.swift */,
+				6046173222158514002C4875 /* RegistrationViewModel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,9 +206,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				602270FA221295E500C5DCC3 /* HomeController.swift in Sources */,
+				6046173322158514002C4875 /* RegistrationViewModel.swift in Sources */,
+				6046173122155624002C4875 /* CustomTextField.swift in Sources */,
 				602270F8221295E500C5DCC3 /* AppDelegate.swift in Sources */,
 				608A48DE221429CC0079587C /* Advertiser.swift in Sources */,
 				604177E52212D42000D466F9 /* HomeButtonControlsStackView.swift in Sources */,
+				6064C10A22154409000D7FD7 /* RegistrationViewController.swift in Sources */,
 				604177C422129B9B00D466F9 /* Extensions+UIView.swift in Sources */,
 				608A48DC2214204F0079587C /* CardViewModel.swift in Sources */,
 				608A48D52213D5AD0079587C /* CardView.swift in Sources */,

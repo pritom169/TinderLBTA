@@ -17,10 +17,11 @@ class HomeController: UIViewController {
     
     let cardViewModels: [CardViewModel] = {
        let producers = [
-        User(name: "George", age: 57, profession: "Actor", imageName: "cluny"),
-        User(name: "Angelina", age: 43, profession: "Actress", imageName: "angelina"),
+        User(name: "George", age: 57, profession: "Actor", imageNames: ["cluny", "cluny-2", "cluny-3" ]),
+        User(name: "Angelina", age: 43, profession: "Actress", imageNames: ["angelina", "angelina-2", "angelina-3"]),
         Advertiser(title: "Slide out Menu", brandName: "Let's build that app", posterPhotoNames: "iPhoneX")
         ] as [ProducesCarViewModel]
+        
         
         let viewModels = producers.map({return $0.toCardViewModel()})
         return viewModels
@@ -29,8 +30,15 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         setupLayout()
         setupDummyCards()
+    }
+    
+    @objc func handleSettings() {
+        let registrationViewController = RegistrationViewController()
+        present(registrationViewController, animated: true)
     }
     
     fileprivate func setupDummyCards(){
@@ -38,10 +46,6 @@ class HomeController: UIViewController {
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = cardVM
-            
-//            cardView.imageView.image = UIImage(named: cardViewModel.imageName)
-//            cardView.informationLabel.attributedText = cardViewModel.attributedString
-//            cardView.informationLabel.textAlignment = cardViewModel.textAlignment
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
             
