@@ -37,7 +37,7 @@ class HomeController: UIViewController {
     }
     
     @objc func handleSettings() {
-        let registrationViewController = RegistrationViewController()
+        let registrationViewController = RegistrationController()
         present(registrationViewController, animated: true)
     }
     

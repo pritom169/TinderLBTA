@@ -10,7 +10,20 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class RegistrationViewController: UIViewController {
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+//        registrationViewModel.image = image
+        registrationViewModel.bindableImage.value = image
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+}
+
+class RegistrationController: UIViewController {
     
     //UI Components
     
@@ -21,9 +34,18 @@ class RegistrationViewController: UIViewController {
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         button.layer.cornerRadius = 16
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         return button
     }()
+    
+    @objc func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
     
     let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24)
@@ -172,7 +194,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self) //Otherwise we'll have a retain cycle.
+//        NotificationCenter.default.removeObserver(self) //Otherwise we'll have a retain cycle.
     }
     
     @objc fileprivate func handleKeyboardShow(notification: Notification){
@@ -208,10 +230,11 @@ class RegistrationViewController: UIViewController {
     let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistraionViewModelObserver(){
-        registrationViewModel.isFormValidObsever = { [unowned self]
+        
+        registrationViewModel.bindableIsFormValid.bind { [unowned self]
             (isFormValid) in
-            print("Form is changing, is it valid?" ,isFormValid)
             
+            guard let isFormValid = isFormValid else {return}
             self.registerButton.isEnabled = isFormValid
             
             if isFormValid {
@@ -222,5 +245,22 @@ class RegistrationViewController: UIViewController {
                 self.registerButton.setTitleColor(.gray, for: .normal)
             }
         }
+        registrationViewModel.bindableImage.bind { [unowned self] (img) in
+             self.selectedPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        //        registrationViewModel.isFormValidObsever = { [unowned self]
+        //            (isFormValid) in
+        //            print("Form is changing, is it valid?" ,isFormValid)
+        //
+        //            self.registerButton.isEnabled = isFormValid
+        //
+        //            if isFormValid {
+        //                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        //                self.registerButton.setTitleColor(.white, for: .normal)
+        //            } else {
+        //                self.registerButton.backgroundColor = .lightGray
+        //                self.registerButton.setTitleColor(.gray, for: .normal)
+        //            }
+        //        }
     }
 }
