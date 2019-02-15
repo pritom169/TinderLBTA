@@ -98,26 +98,22 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
     @objc fileprivate func handleRegister(){
         self.handleTapDismiss()
-        print("Register our user in firebase Auth!")
         
-        guard let email = emailTextField.text else {return}
-        guard let password = passwordTextField.text else {return}
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
-            
+        registrationViewModel.perFormRegistration { [weak self] (err) in
             if let err = err {
-                print(err)
-                self.showHUDWithError(error: err)
+                self?.showHUDWithError(error: err)
                 return
             }
-            
-            print("Successfully registered user:", res?.user.uid ?? "")
+            print("Finished registering our user!")
         }
     }
     
     fileprivate func showHUDWithError(error: Error){
+        registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed registration"
         hud.detailTextLabel.text = error.localizedDescription
@@ -131,7 +127,7 @@ class RegistrationController: UIViewController {
         setupLayout()
         setupNotificationObserver()
         setupTapGesture()
-        setupRegistraionViewModelObserver()
+        setupRegistrationViewModelObserver()
     }
     
     //MARK:: Private
@@ -229,7 +225,7 @@ class RegistrationController: UIViewController {
     
     let registrationViewModel = RegistrationViewModel()
     
-    fileprivate func setupRegistraionViewModelObserver(){
+    fileprivate func setupRegistrationViewModelObserver(){
         
         registrationViewModel.bindableIsFormValid.bind { [unowned self]
             (isFormValid) in
@@ -248,19 +244,14 @@ class RegistrationController: UIViewController {
         registrationViewModel.bindableImage.bind { [unowned self] (img) in
              self.selectedPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
-        //        registrationViewModel.isFormValidObsever = { [unowned self]
-        //            (isFormValid) in
-        //            print("Form is changing, is it valid?" ,isFormValid)
-        //
-        //            self.registerButton.isEnabled = isFormValid
-        //
-        //            if isFormValid {
-        //                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        //                self.registerButton.setTitleColor(.white, for: .normal)
-        //            } else {
-        //                self.registerButton.backgroundColor = .lightGray
-        //                self.registerButton.setTitleColor(.gray, for: .normal)
-        //            }
-        //        }
+        registrationViewModel.bindableIsRegistering.bind { [unowned self]
+            (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
+        }
     }
 }
