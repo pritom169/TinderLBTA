@@ -102,7 +102,6 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleRegister(){
         self.handleTapDismiss()
-        
         registrationViewModel.perFormRegistration { [weak self] (err) in
             if let err = err {
                 self?.showHUDWithError(error: err)
