@@ -62,7 +62,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         dismiss(animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    lazy var header: UIView = {
         let header = UIView()
         header.addSubview(image1Button)
         
@@ -82,10 +82,27 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
                          trailing: header.trailingAnchor, padding:
             .init(top: padding, left: padding, bottom: padding, right: padding))
         return header
+    }()
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0{
+            return header
+        }
+        let headerLabel = UILabel()
+        headerLabel.text = "Home"
+        return headerLabel
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        if section == 0{
+            return 300
+        }
+        return 40
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
     }
     
     fileprivate func setupNavigationItem() {
