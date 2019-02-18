@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4DEB9C14F1DB7877513D1EC9 /* Pods_SwipeMatchFirestoreLBTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321F1D73ACDE24DAC0238AB /* Pods_SwipeMatchFirestoreLBTA.framework */; };
+		601D978F221A83FB0096BB0F /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601D978E221A83FB0096BB0F /* SettingsController.swift */; };
 		602270F8221295E500C5DCC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602270F7221295E500C5DCC3 /* AppDelegate.swift */; };
 		602270FA221295E500C5DCC3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602270F9221295E500C5DCC3 /* HomeController.swift */; };
 		602270FD221295E500C5DCC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602270FB221295E500C5DCC3 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		4321F1D73ACDE24DAC0238AB /* Pods_SwipeMatchFirestoreLBTA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeMatchFirestoreLBTA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		601D978E221A83FB0096BB0F /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		602270F4221295E500C5DCC3 /* SwipeMatchFirestoreLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeMatchFirestoreLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602270F7221295E500C5DCC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		602270F9221295E500C5DCC3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6064C10922154409000D7FD7 /* RegistrationController.swift */,
 				6046173222158514002C4875 /* RegistrationViewModel.swift */,
 				608D4DEB2216AB890065F87C /* Bindable.swift */,
+				601D978E221A83FB0096BB0F /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				6064C10A22154409000D7FD7 /* RegistrationController.swift in Sources */,
 				604177C422129B9B00D466F9 /* Extensions+UIView.swift in Sources */,
 				608A48DC2214204F0079587C /* CardViewModel.swift in Sources */,
+				601D978F221A83FB0096BB0F /* SettingsController.swift in Sources */,
 				608A48D52213D5AD0079587C /* CardView.swift in Sources */,
 				6061B8462212F1AC00E750A7 /* TopNavigationStackView.swift in Sources */,
 				608A48D82213FA0E0079587C /* User.swift in Sources */,
