@@ -108,8 +108,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             UIBarButtonItem(title: "Save", style: .plain, target: self,
                             action: #selector(handleSave)),
             UIBarButtonItem(title: "Logout", style: .plain, target: self,
-                            action: #selector(handleCancel))
+                            action: #selector(handleLogout))
         ]
+    }
+    
+    @objc fileprivate func handleLogout(){
+        try? Auth.auth().signOut()
+        dismiss(animated: true)
     }
     
     @objc fileprivate func handleSave(){

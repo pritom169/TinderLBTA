@@ -73,6 +73,21 @@ class RegistrationController: UIViewController {
         return tf
     }()
     
+    let goToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleGoToLogin(){
+        let loginController = UIViewController()
+        loginController.view.backgroundColor = .yellow
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
     @objc fileprivate func handleTextChange(textField: UITextField){
         
         if textField == fullNameTextField {
@@ -171,6 +186,8 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
+        
         selectedPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         overallStackView.spacing = 8
         view.addSubview(overallStackView)
@@ -178,6 +195,9 @@ class RegistrationController: UIViewController {
                          trailing: view.trailingAnchor,
                          padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor,
+                               bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     fileprivate func setupNotificationObserver(){
