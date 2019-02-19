@@ -11,11 +11,17 @@ import Firebase
 import JGProgressHUD
 import SDWebImage
 
+protocol SettingsControllerDelegate {
+    func didSaveSettings()
+}
+
 class CustomImagePickerController: UIImagePickerController {
     var imageButton: UIButton?
 }
 
 class SettingsController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var delegate: SettingsControllerDelegate?
     
     //instance properties
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
@@ -134,6 +140,10 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             }
             
             print("Finished saving our user!")
+            self.dismiss(animated: true, completion: {
+                print("Dismissal Complete!")
+                self.delegate?.didSaveSettings() // I want to refresh my cards inside of homecontroller somehow.
+            })
         }
     }
     
@@ -263,7 +273,10 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaximumAgeChange), for: .valueChanged)
             //We need to set up the labels on our cell here
             ageRangeCell.minLabel.text = "Min \(user?.minSeekingAge ?? -1)"
-            ageRangeCell.minLabel.text = "Min \(user?.maxSeekingAge ?? -1)"
+            ageRangeCell.maxLabel.text = "Max \(user?.maxSeekingAge ?? -1)"
+            ageRangeCell.maxSlider.value = Float(user?.maxSeekingAge ?? -1)
+            ageRangeCell.minSlider.value = Float(user?.minSeekingAge ?? -1)
+            
             return ageRangeCell
         }
         
@@ -292,22 +305,24 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     }
     
     @objc fileprivate func handleMinimumAgeChange(slider: UISlider) {
-        print(slider.value)
-        //I want to update the minLabel in my AgeRangeCell somehow
-        
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.minLabel.text = "Min \(Int(slider.value))"
-        
-        self.user?.minSeekingAge = Int(slider.value)
+        evaluateMinMax()
     }
     
     @objc fileprivate func handleMaximumAgeChange(slider: UISlider) {
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.maxLabel.text = "Max \(Int(slider.value))"
+        evaluateMinMax()
+    }
+    
+    fileprivate func evaluateMinMax(){
+        guard let ageRangeCell = tableView.cellForRow(at: [5,0]) as? AgeRangeCell else {return}
+        let minValue = Int(ageRangeCell.minSlider.value)
+        var maxValue = Int(ageRangeCell.maxSlider.value)
+        maxValue = max(minValue, maxValue)
+        ageRangeCell.maxSlider.value = Float(maxValue)
+        ageRangeCell.minLabel.text = "Min \(minValue)"
+        ageRangeCell.maxLabel.text = "max \(maxValue)"
         
-        self.user?.maxSeekingAge = Int(slider.value)
+        user?.minSeekingAge = minValue
+        user?.maxSeekingAge = maxValue
     }
     
     @objc fileprivate func handleNameChange(textField: UITextField){

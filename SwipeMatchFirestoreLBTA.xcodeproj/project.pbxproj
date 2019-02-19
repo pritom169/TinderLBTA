@@ -95,7 +95,6 @@
 				608A48D62213F9F70079587C /* Model */,
 				604177E32212D3DF00D466F9 /* Views */,
 				608A48D9221419800079587C /* Controller */,
-				604177C222129AAD00D466F9 /* Extensions */,
 				602270F7221295E500C5DCC3 /* AppDelegate.swift */,
 				602270FB221295E500C5DCC3 /* Main.storyboard */,
 				602270FE221295E600C5DCC3 /* Assets.xcassets */,
@@ -144,6 +143,7 @@
 				6046173222158514002C4875 /* RegistrationViewModel.swift */,
 				608D4DEB2216AB890065F87C /* Bindable.swift */,
 				601D978E221A83FB0096BB0F /* SettingsController.swift */,
+				604177C222129AAD00D466F9 /* Extensions */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
