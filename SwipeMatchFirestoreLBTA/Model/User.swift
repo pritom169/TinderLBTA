@@ -14,6 +14,8 @@ struct User:ProducesCarViewModel {
     var age: Int?
     var profession: String?
     var imageUrl1: String?
+    var imageUrl2: String?
+    var imageUrl3: String?
     var uid: String?
     
     init(dictionary: [String: Any]) {
@@ -21,7 +23,9 @@ struct User:ProducesCarViewModel {
         self.name = dictionary["fullName"] as? String ?? ""
         self.age = dictionary["age"] as? Int
         self.profession = dictionary["profession"] as? String
-        self.imageUrl1 = dictionary["imageUrl1"] as? String ??  ""
+        self.imageUrl1 = dictionary["imageUrl1"] as? String
+        self.imageUrl2 = dictionary["imageUrl2"] as? String
+        self.imageUrl3 = dictionary["imageUrl3"] as? String
         self.uid = dictionary["imageUrl1"] as? String ??  ""
     }
     
@@ -40,6 +44,11 @@ struct User:ProducesCarViewModel {
         attributedText.append(NSAttributedString(string: "\n  \(professionString)", attributes:
             [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
         
-        return CardViewModel(imageNames: [imageUrl1 ?? ""], attributedString: attributedText, textAlignment: .left)
+        var imageURLs = (String)()
+        if let url = imageUrl1{ imageURLs.append(url)}
+        if let url = imageUrl1{ imageURLs.append(url)}
+        if let url = imageUrl1{ imageURLs.append(url)}
+        
+        return CardViewModel(imageNames: [imageURLs], attributedString: attributedText, textAlignment: .left)
     }
 }
