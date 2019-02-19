@@ -18,6 +18,9 @@ struct User:ProducesCarViewModel {
     var imageUrl3: String?
     var uid: String?
     
+    var minSeekingAge: Int?
+    var maxSeekingAge: Int?
+    
     init(dictionary: [String: Any]) {
         //We will initialize our user here!
         self.name = dictionary["fullName"] as? String ?? ""
@@ -27,6 +30,8 @@ struct User:ProducesCarViewModel {
         self.imageUrl2 = dictionary["imageUrl2"] as? String
         self.imageUrl3 = dictionary["imageUrl3"] as? String
         self.uid = dictionary["imageUrl1"] as? String ??  ""
+        self.minSeekingAge = dictionary["minSeekingAge"] as? Int
+        self.maxSeekingAge = dictionary["maxSeekingAge"] as? Int
     }
     
     func toCardViewModel() -> CardViewModel {
