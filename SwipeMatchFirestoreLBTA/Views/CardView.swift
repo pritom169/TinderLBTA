@@ -100,14 +100,6 @@ class CardView: UIView {
         print("Present User Details page!")
         delegate?.didTapMoreInfo()
         
-        //Heck solution: Becasue we don't want to deal with controller codes inside a view class
-        
-        
-//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-//        let userDetailsController = UIViewController()
-//        userDetailsController.view.backgroundColor = .yellow
-//        rootViewController?.present(userDetailsController, animated: true)
-        
         //Using a delegate instead, much more stronger solution
     }
     

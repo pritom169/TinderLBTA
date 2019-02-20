@@ -1,9 +1,9 @@
 //
-//  LoginController.swift
+//  CardView.swift
 //  SwipeMatchFirestoreLBTA
 //
-//  Created by Brian Voong on 11/26/18.
-//  Copyright © 2018 Brian Voong. All rights reserved.
+//  Created by bs137 on 2/20/19.
+//  Copyright © 2019 bs137. All rights reserved.
 //
 
 import UIKit
