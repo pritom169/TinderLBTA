@@ -9,7 +9,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTapMoreInfo()
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet{
@@ -50,7 +56,7 @@ class CardView: UIView {
     }
     
     //Encapsulation
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "nature"))
+    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "34"))
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     
@@ -83,6 +89,28 @@ class CardView: UIView {
         }
     }
     
+    fileprivate let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "33").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleMoreInfo(){
+        print("Present User Details page!")
+        delegate?.didTapMoreInfo()
+        
+        //Heck solution: Becasue we don't want to deal with controller codes inside a view class
+        
+        
+//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//        let userDetailsController = UIViewController()
+//        userDetailsController.view.backgroundColor = .yellow
+//        rootViewController?.present(userDetailsController, animated: true)
+        
+        //Using a delegate instead, much more stronger solution
+    }
+    
     fileprivate func setupLayout() {
         //Custom drawing mode
         layer.cornerRadius = 10
@@ -104,6 +132,12 @@ class CardView: UIView {
         
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil,
+                              bottom: bottomAnchor, trailing: trailingAnchor,
+                              padding: .init(top: 0, left: 0, bottom: 16, right: 16),
+                              size: .init(width: 44, height: 44))
     }
     
     fileprivate let barsStackView = UIStackView()
