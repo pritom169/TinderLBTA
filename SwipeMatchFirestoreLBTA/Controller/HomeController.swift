@@ -36,8 +36,8 @@ class HomeController: UIViewController, SettingsControllerDelegate {
         //you want to kick the user out from the application as soon as the user is logged out!
         
         if Auth.auth().currentUser == nil {
-            let registrationController = RegistrationController()
-            let navController = UINavigationController(rootViewController: registrationController)
+            let loginController = LoginController()
+            let navController = UINavigationController(rootViewController: loginController)
             present(navController, animated: true)
         }
     }
@@ -105,12 +105,16 @@ class HomeController: UIViewController, SettingsControllerDelegate {
         overallStackView.bringSubviewToFront(cardsDeckView)
     }
     
+    func didFinishLoggingIn(){
+        fetchCurrentUser()
+    }
+    
     var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
         guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else {return}
         let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Fetching users"
+        hud.textLabel.text = "Loading"
         hud.show(in: view)
         //We will use pagination here to page through 2 users at a time
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
