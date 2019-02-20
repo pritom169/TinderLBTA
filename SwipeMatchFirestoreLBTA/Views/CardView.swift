@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol CardViewDelegate {
-    func didTapMoreInfo()
+    func didTapMoreInfo(cardViewModel: CardViewModel)
 }
 
 class CardView: UIView {
@@ -98,7 +98,7 @@ class CardView: UIView {
     
     @objc fileprivate func handleMoreInfo(){
         print("Present User Details page!")
-        delegate?.didTapMoreInfo()
+        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
         
         //Using a delegate instead, much more stronger solution
     }

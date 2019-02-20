@@ -10,6 +10,12 @@ import UIKit
 
 class UserDetailsController: UIViewController, UIScrollViewDelegate {
     
+    var cardViewModel: CardViewModel! {
+        didSet {
+            infoLabel.attributedText = cardViewModel.attributedString
+        }
+    }
+    
     lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.alwaysBounceVertical = true
