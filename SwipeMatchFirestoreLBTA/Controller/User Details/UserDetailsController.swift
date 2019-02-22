@@ -16,7 +16,6 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
             infoLabel.attributedText = cardViewModel.attributedString
             
             swipingPhotosController.cardViewModel = cardViewModel
-
         }
     }
     
@@ -75,17 +74,6 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
         setupBottomControls()
     }
     
-    fileprivate func setupBottomControls(){
-        let stackView = UIStackView(arrangedSubviews: [dislikeButton, superLikeButton, likeButton])
-        stackView.distribution = .fillEqually
-        stackView.spacing = -32
-        view.addSubview(stackView)
-        stackView.anchor(top: nil, leading: nil,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: nil,
-                         padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 300, height: 80))
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
-    
     fileprivate func setupLayout() {
         view.addSubview(scrollView)
         scrollView.fillSuperview()
@@ -132,6 +120,17 @@ class UserDetailsController: UIViewController, UIScrollViewDelegate {
     
     @objc fileprivate func handleTapDismiss(){
         self.dismiss(animated: true)
+    }
+    
+    fileprivate func setupBottomControls(){
+        let stackView = UIStackView(arrangedSubviews: [dislikeButton, superLikeButton, likeButton])
+        stackView.distribution = .fillEqually
+        stackView.spacing = -32
+        view.addSubview(stackView)
+        stackView.anchor(top: nil, leading: nil,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: nil,
+                         padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 300, height: 80))
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
 
