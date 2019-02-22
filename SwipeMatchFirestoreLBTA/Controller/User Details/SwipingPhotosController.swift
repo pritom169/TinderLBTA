@@ -10,21 +10,24 @@ import UIKit
 
 class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSource {
     
-    let controllers = [
-        PhotoController(image: #imageLiteral(resourceName: "3 1")),
-        PhotoController(image: #imageLiteral(resourceName: "3 4")),
-        PhotoController(image: #imageLiteral(resourceName: "3 5")),
-        PhotoController(image: #imageLiteral(resourceName: "3 2")),
-        PhotoController(image: #imageLiteral(resourceName: "3 3"))
-    ]
+    var cardViewModel : CardViewModel! {
+        didSet{
+            print(cardViewModel.attributedString)
+            controllers = cardViewModel.imageUrls.map({ (imageUrl) -> UIViewController in
+                let photoController = PhotoController(imageUrl: imageUrl)
+                return photoController
+            })
+            setViewControllers([controllers.first!], direction: .forward, animated: false)
+        }
+    }
+    
+    var controllers = [UIViewController]() //blank array
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         
         view.backgroundColor = .white
-        
-        setViewControllers([controllers.first!], direction: .forward, animated: false)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -44,8 +47,11 @@ class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSou
 class PhotoController: UIViewController {
     
     let imageView = UIImageView(image: #imageLiteral(resourceName: "george"))
-    init(image: UIImage) {
-        imageView.image = image
+    //proview an initializer that takes in a URL instead of an image.
+    init(imageUrl: String) {
+        if let url = URL(string: imageUrl){
+            imageView.sd_setImage(with: url)
+        }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,6 +62,6 @@ class PhotoController: UIViewController {
         super.viewDidLoad()
         view.addSubview(imageView)
         imageView.fillSuperview()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
     }
 }
