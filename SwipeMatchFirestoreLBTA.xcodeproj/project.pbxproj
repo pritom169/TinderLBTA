@@ -32,6 +32,7 @@
 		608A48DC2214204F0079587C /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48DB2214204F0079587C /* CardViewModel.swift */; };
 		608A48DE221429CC0079587C /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A48DD221429CC0079587C /* Advertiser.swift */; };
 		608D4DEC2216AB890065F87C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608D4DEB2216AB890065F87C /* Bindable.swift */; };
+		609D6F6C221FE7120049CD7E /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609D6F6B221FE7120049CD7E /* PhotoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		608A48DB2214204F0079587C /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		608A48DD221429CC0079587C /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		608D4DEB2216AB890065F87C /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		609D6F6B221FE7120049CD7E /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		8536E156BFF352187B1F9CAB /* Pods-SwipeMatchFirestoreLBTA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreLBTA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeMatchFirestoreLBTA/Pods-SwipeMatchFirestoreLBTA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 			children = (
 				605C29BC221D2AB200E346F7 /* UserDetailsController.swift */,
 				605C29DE221D6E2800E346F7 /* SwipingPhotosController.swift */,
+				609D6F6B221FE7120049CD7E /* PhotoController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				605C29BD221D2AB200E346F7 /* UserDetailsController.swift in Sources */,
 				608D4DEC2216AB890065F87C /* Bindable.swift in Sources */,
 				602270FA221295E500C5DCC3 /* HomeController.swift in Sources */,
+				609D6F6C221FE7120049CD7E /* PhotoController.swift in Sources */,
 				6046173322158514002C4875 /* RegistrationViewModel.swift in Sources */,
 				6046173122155624002C4875 /* CustomTextField.swift in Sources */,
 				602270F8221295E500C5DCC3 /* AppDelegate.swift in Sources */,
