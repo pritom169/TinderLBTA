@@ -17,19 +17,19 @@ protocol ProducesCarViewModel {
 class CardViewModel {
     //We'll define the properties that are view will display/render out!
     
-    let imageNames: [String]
+    let imageUrls: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
     
     init(imageNames: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment) {
-        self.imageNames = imageNames
+        self.imageUrls = imageNames
         self.attributedString = attributedString
         self.textAlignment = textAlignment
     }
     
     fileprivate var imageIndex = 0{
         didSet{
-            let imageUrl = imageNames[imageIndex]
+            let imageUrl = imageUrls[imageIndex]
             imageIndexObserver?(imageIndex, imageUrl)
         }
     }
@@ -39,7 +39,7 @@ class CardViewModel {
     var imageIndexObserver: ((Int, String?) -> ())?
     
     func addvanceToNextPhoto(){
-        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+        imageIndex = min(imageIndex + 1, imageUrls.count - 1)
     }
     
     func goToPreviousPhoto(){

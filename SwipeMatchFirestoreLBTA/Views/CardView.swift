@@ -20,7 +20,7 @@ class CardView: UIView {
     var cardViewModel: CardViewModel! {
         didSet{
             
-            let imageName = cardViewModel.imageNames.first ?? ""
+            let imageName = cardViewModel.imageUrls.first ?? ""
             
             //we're currently passing our url for image. So instead of showing the url the library will show the image.
             if let url = URL(string: imageName){
@@ -30,7 +30,7 @@ class CardView: UIView {
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
             
-            (0..<cardViewModel.imageNames.count).forEach { (_) in
+            (0..<cardViewModel.imageUrls.count).forEach { (_) in
                 let barView = UIView()
                 barView.backgroundColor = barDeselectedColor
                 barsStackView.addArrangedSubview(barView)
@@ -56,7 +56,7 @@ class CardView: UIView {
     }
     
     //Encapsulation
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "34"))
+    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "3 2"))
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     
