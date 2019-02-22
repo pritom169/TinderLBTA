@@ -24,7 +24,8 @@ class CardView: UIView {
             
             //we're currently passing our url for image. So instead of showing the url the library will show the image.
             if let url = URL(string: imageName){
-                imageView.sd_setImage(with: url)
+//                imageView.sd_setImage(with: url)
+                imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "33"), options: .continueInBackground)
             }
             
             informationLabel.attributedText = cardViewModel.attributedString
@@ -45,7 +46,7 @@ class CardView: UIView {
         cardViewModel.imageIndexObserver = { [weak self](idx, imageURL) in
             print("Changing photo from view model!")
             if let url = URL(string: imageURL ?? "") {
-                self?.imageView.sd_setImage(with: url)
+                self?.imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "33"), options: .continueInBackground)
             }
             
             self?.barsStackView.arrangedSubviews.forEach({ (v) in
