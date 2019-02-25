@@ -10,6 +10,22 @@ import UIKit
 
 class MatchView: UIView {
     
+    fileprivate let itsAMatchImageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "itsamatch"))
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    fileprivate let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You and X have liked\neach other"
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     fileprivate let currentUserImageView:UIImageView = {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "3 6"))
         imageView.contentMode = .scaleAspectFill
@@ -27,6 +43,13 @@ class MatchView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         return imageView
     }()
+    
+    fileprivate let sendMessageButton: UIButton = {
+        let button = SendMessageButton(type: .system)
+        button.setTitle("SEND MESSAGE", for: .normal)
+        button.backgroundColor = .yellow
+        return button
+    }()
 
     
     override init(frame: CGRect) {
@@ -38,8 +61,22 @@ class MatchView: UIView {
     }
     
     fileprivate func setupLayout(){
+        addSubview(itsAMatchImageView)
+        addSubview(descriptionLabel)
         addSubview(currentUserImageView)
         addSubview(cardUserImageView)
+        addSubview(sendMessageButton)
+        
+        itsAMatchImageView.anchor(top: nil, leading: nil,
+                                  bottom: descriptionLabel.topAnchor, trailing: nil,
+                                  padding: .init(top: 0, left: 0, bottom: 16, right: 0),
+                                  size: .init(width: 300, height: 80))
+        itsAMatchImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        descriptionLabel.anchor(top: nil, leading: self.leadingAnchor,
+                                bottom: currentUserImageView.topAnchor, trailing: trailingAnchor,
+                                padding: .init(top: 0, left: 0, bottom: 32, right: 0),
+                                size: .init(width: 0, height: 50))
         
         let imageWidth:CGFloat = 140
         
@@ -56,6 +93,10 @@ class MatchView: UIView {
                                  size: .init(width: imageWidth, height: imageWidth))
         cardUserImageView.layer.cornerRadius = 140/2
         cardUserImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
+        sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, leading: leadingAnchor, bottom: nil,
+                                 trailing: trailingAnchor, padding: .init(top: 32, left: 48, bottom: 0, right: 48),
+                                 size: .init(width: 0, height: 50))
     }
     
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
