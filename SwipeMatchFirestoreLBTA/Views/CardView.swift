@@ -198,6 +198,22 @@ class CardView: UIView {
         let shouldDismissCard = abs(gesture.translation(in: nil).x)>threshold
         
         
+        //Hack solution
+        if shouldDismissCard {
+            guard let homeController = self.delegate as? HomeController else {return}
+            if translationDirection == 1 {
+                homeController.handleLike()
+            } else {
+                homeController.handleDislike()
+            }
+        } else {
+            UIView.animate(withDuration: 1, delay: 0,
+                           usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1,
+                           options: .curveEaseOut, animations: {
+                            self.transform = .identity
+            })
+        }
+        
         UIView.animate(withDuration: 1, delay: 0,
                        usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1,
                        options: .curveEaseOut, animations: {
