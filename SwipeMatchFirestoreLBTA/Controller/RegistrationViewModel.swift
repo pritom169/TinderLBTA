@@ -26,7 +26,7 @@ class RegistrationViewModel {
     }
 
     
-    func perFormRegistration(completion: @escaping (Error?) -> ()) {
+    func performRegistration(completion: @escaping (Error?) -> ()) {
         bindableIsRegistering.value = true
         guard let email = email, let password = password else {return}
             Auth.auth().createUser(withEmail: email, password: password) { (res, err) in

@@ -22,12 +22,6 @@ class CardView: UIView {
     var cardViewModel: CardViewModel! {
         didSet{
             
-//            let imageName = cardViewModel.imageUrls.first ?? ""
-            
-            //we're currently passing our url for image. So instead of showing the url the library will show the image.
-//            if let url = URL(string: imageName){
-//                imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "33"), options: .continueInBackground)
-//            }
             swipingPhotosController.cardViewModel = self.cardViewModel
             
             informationLabel.attributedText = cardViewModel.attributedString
@@ -47,9 +41,6 @@ class CardView: UIView {
     fileprivate func setupImageIndexObserver() {
         cardViewModel.imageIndexObserver = { [weak self](idx, imageURL) in
             print("Changing photo from view model!")
-//            if let url = URL(string: imageURL ?? "") {
-//                self?.imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "33"), options: .continueInBackground)
-//            }
             
             self?.barsStackView.arrangedSubviews.forEach({ (v) in
                 v.backgroundColor = self?.barDeselectedColor
@@ -57,10 +48,7 @@ class CardView: UIView {
             self?.barsStackView.arrangedSubviews[idx].backgroundColor = .white
         }
     }
-    
-    //Encapsulation
-//    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "3 2"))
-    //Replace it with UIPageViewController component which is our SwipingPhotosController
+
     fileprivate let swipingPhotosController = SwipingPhotosController(isCardViewMode: true)
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
@@ -117,9 +105,6 @@ class CardView: UIView {
         addSubview(swipingPhotosView)
         swipingPhotosView.fillSuperview()
         
-//        setupBarsStackView()
-        
-        //add a gradient layer somehow
         setupGradientLayer()
         addSubview(informationLabel)
         
@@ -181,8 +166,7 @@ class CardView: UIView {
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
         
         let translation = gesture.translation(in: nil)
-        //Rotation
-        //some not that scary math here to convert radians to degress
+        
         let degrees : CGFloat = translation.x / 20
         let angle = degrees * .pi / 180
         
@@ -214,23 +198,23 @@ class CardView: UIView {
             })
         }
         
-        UIView.animate(withDuration: 1, delay: 0,
-                       usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1,
-                       options: .curveEaseOut, animations: {
-                        if shouldDismissCard {
-                            self.frame = CGRect(x: 600 * translationDirection, y: 0,
-                                                width: self.frame.width, height: self.frame.height)
-                        }else {
-                            self.transform = .identity
-                        }
-        }) { (_) in
-            self.transform = .identity
-            if shouldDismissCard {
-                self.removeFromSuperview()
-                //Reset topCardView inside of HomeController somehow
-                self.delegate?.didRemoveCard(cardView: self)
-            }
-        }
+//        UIView.animate(withDuration: 1, delay: 0,
+//                       usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1,
+//                       options: .curveEaseOut, animations: {
+//                        if shouldDismissCard {
+//                            self.frame = CGRect(x: 600 * translationDirection, y: 0,
+//                                                width: self.frame.width, height: self.frame.height)
+//                        }else {
+//                            self.transform = .identity
+//                        }
+//        }) { (_) in
+//            self.transform = .identity
+//            if shouldDismissCard {
+//                self.removeFromSuperview()
+//                //Reset topCardView inside of HomeController somehow
+//                self.delegate?.didRemoveCard(cardView: self)
+//            }
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
