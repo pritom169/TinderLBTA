@@ -97,6 +97,7 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     
     
     @objc fileprivate func handleRefresh(){
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
         fetchUsersFromFirestore()
     }
     
@@ -157,7 +158,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
                 let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
-                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+//                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+                let hasNotSwipedBefore = true
                 if isNotCurrentUser && hasNotSwipedBefore {
                     let cardView = self.setupCardFromUser(user: user)
                     
@@ -201,18 +203,21 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
             let hasMatched = data[uid] as? Int == 1
             if hasMatched {
                 print("Has matched!")
-                
-                let hud = JGProgressHUD(style: .dark)
-                hud.textLabel.text = "Found a match!"
-                hud.show(in: self.view)
-                hud.dismiss(afterDelay: 4)
+                self.presentMatchView(cardUID: cardUID)
             }
         }
+    }
+    
+    fileprivate func presentMatchView(cardUID: String){
+        let matchView = MatchView()
+        view.addSubview(matchView)
+        matchView.fillSuperview()
     }
     
     fileprivate func saveSwipeToFirestore(didLike : Int){
         guard let uid = Auth.auth().currentUser?.uid else {return}
         guard let cardUID = topCardView?.cardViewModel.uid else {return}
+        
         
         let documentData = [cardUID: didLike]
         
@@ -229,7 +234,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                             print("Failed to save swipe data: ", err)
                         }
                         print("Successfully updated swipe data!")
-                        self.checkIfMatchExists(cardUID: cardUID)
+                        if didLike == 1 {
+                            self.checkIfMatchExists(cardUID: cardUID)
+                        }
                 }
             } else {
                 Firestore.firestore().collection("swipes").document(uid)
@@ -238,7 +245,9 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                             print("Failed to save swipe data: ", err)
                         }
                         print("Successfully updated swipe data!")
-                        self.checkIfMatchExists(cardUID: cardUID)
+                        if didLike == 1 {
+                            self.checkIfMatchExists(cardUID: cardUID)
+                        }
                 }
             }
         }
