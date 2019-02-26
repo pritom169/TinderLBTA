@@ -1,14 +1,14 @@
 //
-//  SendMessageButton.swift
+//  KeepSwipingButton.swift
 //  SwipeMatchFirestoreLBTA
 //
-//  Created by bs137 on 2/25/19.
+//  Created by bs137 on 2/26/19.
 //  Copyright © 2019 bs137. All rights reserved.
 //
 
 import UIKit
 
-class SendMessageButton: UIButton {
+class KeepSwipingButton: UIButton {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -20,11 +20,25 @@ class SendMessageButton: UIButton {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
         
+        let cornerRadius = rect.height / 2
+        let maskLayer = CAShapeLayer()
+        
+        let maskPath = CGMutablePath()
+        maskPath.addPath(UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).cgPath)
+        //Punch out the middle
+        
+        maskPath.addPath(UIBezierPath(roundedRect: rect.insetBy(dx: 2, dy: 2), cornerRadius: cornerRadius).cgPath)
+        
+        
+        maskLayer.path = maskPath
+        maskLayer.fillRule = .evenOdd
+        
+        gradientLayer.mask = maskLayer
+        
         self.layer.insertSublayer(gradientLayer, at: 0)
-        layer.cornerRadius = rect.height / 2
+        layer.cornerRadius = cornerRadius
         clipsToBounds = true
         
         gradientLayer.frame = rect
     }
-
 }

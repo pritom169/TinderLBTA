@@ -47,7 +47,14 @@ class MatchView: UIView {
     fileprivate let sendMessageButton: UIButton = {
         let button = SendMessageButton(type: .system)
         button.setTitle("SEND MESSAGE", for: .normal)
-        button.backgroundColor = .yellow
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
+    fileprivate let keepSwipingButton: UIButton = {
+        let button = KeepSwipingButton(type: .system)
+        button.setTitle("KEEP SWIPING", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
 
@@ -66,6 +73,7 @@ class MatchView: UIView {
         addSubview(currentUserImageView)
         addSubview(cardUserImageView)
         addSubview(sendMessageButton)
+        addSubview(keepSwipingButton)
         
         itsAMatchImageView.anchor(top: nil, leading: nil,
                                   bottom: descriptionLabel.topAnchor, trailing: nil,
@@ -96,7 +104,12 @@ class MatchView: UIView {
         
         sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, leading: leadingAnchor, bottom: nil,
                                  trailing: trailingAnchor, padding: .init(top: 32, left: 48, bottom: 0, right: 48),
-                                 size: .init(width: 0, height: 50))
+                                 size: .init(width: 0, height: 60))
+        
+        keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, leading: sendMessageButton.leadingAnchor,
+                                 bottom: nil, trailing: sendMessageButton.trailingAnchor,
+                                 padding: .init(top: 16, left: 0, bottom: 0, right: 0),
+                                 size: .init(width: 0, height: 60))
     }
     
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
