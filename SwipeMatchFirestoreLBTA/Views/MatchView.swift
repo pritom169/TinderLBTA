@@ -65,6 +65,8 @@ class MatchView: UIView {
         setupBlurView()
         
         setupLayout()
+        
+        setupAnimation()
     }
     
     fileprivate func setupLayout(){
@@ -74,6 +76,8 @@ class MatchView: UIView {
         addSubview(cardUserImageView)
         addSubview(sendMessageButton)
         addSubview(keepSwipingButton)
+        
+        let imageWidth: CGFloat = 140
         
         itsAMatchImageView.anchor(top: nil, leading: nil,
                                   bottom: descriptionLabel.topAnchor, trailing: nil,
@@ -86,20 +90,19 @@ class MatchView: UIView {
                                 padding: .init(top: 0, left: 0, bottom: 32, right: 0),
                                 size: .init(width: 0, height: 50))
         
-        let imageWidth:CGFloat = 140
-        
         currentUserImageView.anchor(top: nil, leading: nil,
                                     bottom: nil, trailing: centerXAnchor,
                                     padding: .init(top: 0, left: 0, bottom: 0, right: 16),
                                     size: .init(width: imageWidth, height: imageWidth))
-        currentUserImageView.layer.cornerRadius = 140/2
+        currentUserImageView.layer.cornerRadius = imageWidth / 2
         currentUserImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         cardUserImageView.anchor(top: nil, leading: centerXAnchor,
                                  bottom: nil, trailing: nil,
                                  padding: .init(top: 0, left: 16, bottom: 0, right: 0),
                                  size: .init(width: imageWidth, height: imageWidth))
-        cardUserImageView.layer.cornerRadius = 140/2
+        
+        cardUserImageView.layer.cornerRadius = imageWidth / 2
         cardUserImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, leading: leadingAnchor, bottom: nil,
@@ -110,6 +113,47 @@ class MatchView: UIView {
                                  bottom: nil, trailing: sendMessageButton.trailingAnchor,
                                  padding: .init(top: 16, left: 0, bottom: 0, right: 0),
                                  size: .init(width: 0, height: 60))
+    }
+    
+    fileprivate func setupAnimation(){
+        
+        let angle = 30 * CGFloat.pi / 180
+        //starting postition
+        currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+            .concatenating(CGAffineTransform(translationX: 200, y: 0))
+        cardUserImageView.transform = CGAffineTransform(rotationAngle: angle)
+            .concatenating(CGAffineTransform(translationX: -200, y: 0))
+        
+        sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
+        keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
+        
+        //keyframe animations for segmented animation
+        UIView.animateKeyframes(withDuration: 1.2, delay: 0,
+                                options: .calculationModeCubic, animations: {
+                                    
+                                    //Animation 1 - translation back to original position
+                                    UIView.addKeyframe(withRelativeStartTime: 0,
+                                                       relativeDuration: 0.45, animations: {
+                                                        self.currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+                                                        self.cardUserImageView.transform = CGAffineTransform(rotationAngle: angle)
+                                    })
+                                    
+                                    //Animation 2 - rotation
+                                    UIView.addKeyframe(withRelativeStartTime: 0.6,
+                                                       relativeDuration: 0.4, animations: {
+                                                self.currentUserImageView.transform = .identity
+                                                self.cardUserImageView.transform = .identity
+                                    })
+        }) { (_) in
+            
+        }
+        
+        UIView.animate(withDuration: 0.75, delay: 0.6 * 1.3, usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.1, options: .curveEaseOut,
+                       animations: {
+                        self.sendMessageButton.transform = .identity
+                        self.keepSwipingButton.transform = .identity
+        })
     }
     
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
@@ -135,8 +179,14 @@ class MatchView: UIView {
                        animations: {
                         self.alpha = 0
         }) { (_) in
-             self.removeFromSuperview()
+            self.removeFromSuperview()
         }
+        
+        UIView.animate(withDuration: 0.4, delay: 0.65, usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+                        self.sendMessageButton.transform = .identity
+                        self.keepSwipingButton.transform = .identity
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
